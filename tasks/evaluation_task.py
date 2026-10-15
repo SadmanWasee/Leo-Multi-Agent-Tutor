@@ -4,16 +4,16 @@ from agents.evaluator import evaluator
 
 evaluation_task = Task(
     description=(
-        "Evaluate the student's answer to the following question.\n\n"
+        "Evaluate a beginner student's answer about {topic}.\n\n"
         "Question: {question}\n"
-        "Expected answer: {expected_answer}\n"
         "Student answer: {student_answer}\n\n"
-        "Compare the student's answer with the expected concepts. "
+        "First, determine what a correct answer should contain. "
+        "Then compare the student's answer with those concepts. "
         "Award a score from 0 to 10, allowing partial credit. "
-        "Explain what the student understood correctly, "
-        "identify any mistakes or missing concepts, "
-        "and recommend what the student should review. "
-        "Be fair and constructive."
+        "Do not award full marks to an incorrect or incomplete answer. "
+        "Explain what the student understood correctly, identify "
+        "mistakes or missing concepts, and recommend what to review. "
+        "Be fair, constructive, and beginner-friendly."
     ),
     expected_output=(
         "A structured evaluation containing:\n"
