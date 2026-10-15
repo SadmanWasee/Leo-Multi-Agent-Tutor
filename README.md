@@ -85,18 +85,36 @@ python main.py
 
 Enter a topic when prompted, answer the five quiz questions, and review the evaluations and any reteaching activities.
 
-## Agent Workflow
 
-1. The Coordinator plans the learning session.
-2. The Explainer teaches the requested topic.
-3. The Quiz Master generates five questions.
-4. The student answers each question.
-5. The Evaluator assesses each answer and provides feedback.
-6. If a score is below 6/10, the Explainer provides targeted reteaching.
-7. The Evaluator checks the student's response to the follow-up question.
-8. Leo displays the final quiz report and session summary.
+## Architecture
 
-The agents run in a sequential CrewAI process. Evaluation and reteaching are handled in subsequent stages of the Python application.
+Leo uses CrewAI's sequential process to coordinate the initial learning stages. The Python application then manages student responses, answer evaluation, and conditional reteaching.
+
+```mermaid
+flowchart TD
+    A[Student enters a topic] --> B[Coordinator plans session]
+    B --> C[Explainer teaches topic]
+    C --> D[Quiz Master generates 5 questions]
+    D --> E[Student answers a question]
+    E --> F[Evaluator scores answer]
+    F --> G{Score below 6/10?}
+    G -- Yes --> H[Explainer reteaches weak concepts]
+    H --> I[Student answers follow-up question]
+    I --> J[Evaluator checks follow-up answer]
+    J --> K[Store results in session memory]
+    G -- No --> K
+    K --> L{More quiz questions?}
+    L -- Yes --> E
+    L -- No --> M[Display final report]
+```
+
+### Orchestration Pattern
+
+- **Sequential orchestration:** The Coordinator, Explainer, and Quiz Master run in sequence through CrewAI.
+- **Student interaction:** The main Python program collects answers between quiz stages.
+- **Conditional feedback loop:** Answers scoring below 6/10 trigger targeted reteaching and a follow-up evaluation.
+- **Session memory:** A Python dictionary tracks the topic, questions, answers, evaluations, scores, and reteaching results during the current run.
+
 
 ## Memory
 
