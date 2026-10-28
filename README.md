@@ -1,3 +1,7 @@
+# Project Demo: 
+## Project Demo
+
+[![Watch the Project Demo](https://img.youtube.com/vi/5iFa2g5Fdzg/maxresdefault.jpg)](https://www.youtube.com/watch?v=5iFa2g5Fdzg&t=77s)
 
 # Leo: Multi-Agent AI Tutor
 
